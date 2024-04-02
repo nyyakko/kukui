@@ -1,6 +1,6 @@
 # kukui
 
-its basically a toy example for showing an pre-processor implemented using my [LibPreprocessor](https://github.dev/nyyakko/LibPreprocessor)
+its basically a toy example for showing an pre-processor implemented using my [LibPreprocessor](https://github.com/nyyakko/LibPreprocessor)
 
 # installation
 
