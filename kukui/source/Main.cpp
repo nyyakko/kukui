@@ -73,12 +73,14 @@ liberror::ErrorOr<int> program_main(std::span<char const*> arguments)
         ("f,file", "file(s) to preprocess", cxxopts::value<std::vector<std::string>>()->default_value({}))
         ("e,envvars", "environment variables", cxxopts::value<std::vector<std::string>>()->default_value({}))
         ("p,preserve", "preserve the preprocessed file", cxxopts::value<bool>()->default_value("true"))
+        ("h,help", "")
         ("v,verbose", "", cxxopts::value<bool>()->default_value("true"));
 
     auto const parsedOptions = options.parse(int(arguments.size()), arguments.data());
 
     if (parsedOptions.arguments().empty()) return liberror::make_error("{}", options.help());
     if (parsedOptions.count("file") == 0) return liberror::make_error("{}", options.help());
+    if (parsedOptions.count("help")) return liberror::make_error("{}", options.help());
 
     namespace fs = std::filesystem;
 
