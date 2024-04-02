@@ -96,7 +96,6 @@ liberror::ErrorOr<int> program_main(std::span<char const*> arguments)
                 .environmentVariables = TRY(setup_environment_variables(parsedOptions))
             }));
 
-
     return EXIT_SUCCESS;
 }
 
