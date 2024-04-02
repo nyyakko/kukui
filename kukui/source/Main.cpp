@@ -16,7 +16,7 @@ liberror::ErrorOr<std::unordered_map<std::string, std::string>> setup_environmen
     auto const variables = parsedOptions["envvars"].as<std::vector<std::string>>();
 
     if (parsedOptions["envvars"].has_default()) return result;
-    if (variables.size() % 2 != 0) return liberror::make_error("[Runtime/error]: variables should given in the following way: -e KEY1,VALUE1,KEY2,VALUE2");
+    if (variables.size() % 2 != 0) return liberror::make_error(PREFIX_ERROR": variables should given in the following way: -e KEY1,VALUE1,KEY2,VALUE2");
 
     for (auto const& variable : variables | std::views::chunk(2))
     {
@@ -34,17 +34,17 @@ liberror::ErrorOr<void> preprocess_files(auto verbose, auto preserve, auto const
 
     for (fs::path const& file : files)
     {
-        if (verbose) { std::println("[Runtime/info]: processing: {}", file.string()); }
+        if (verbose) { std::println(PREFIX_INFO": processing: {}", file.string()); }
 
         if (fs::is_empty(file))
         {
-            if (verbose) { std::println("[Runtime/info]: skipping empty file: {}", file.string()); }
+            if (verbose) { std::println(PREFIX_INFO": skipping empty file: {}", file.string()); }
             continue;
         }
 
         if (!fs::is_regular_file(file))
         {
-            if (verbose) { std::println("[Runtime/info]: skipping non-regular file: {}", file.string()); }
+            if (verbose) { std::println(PREFIX_INFO": skipping non-regular file: {}", file.string()); }
             continue;
         }
 
@@ -54,12 +54,12 @@ liberror::ErrorOr<void> preprocess_files(auto verbose, auto preserve, auto const
         {
             auto const preservedName = std::format("{}\\{}.preserve{}", file.parent_path().string(), file.stem().string(), file.extension().string());
             fs::copy(file, preservedName, fs::copy_options::overwrite_existing);
-            if (verbose) { std::println("[Runtime/info]: file {} preserved as {}", file.string(), preservedName); }
+            if (verbose) { std::println(PREFIX_INFO": file {} preserved as {}", file.string(), preservedName); }
         }
 
         std::ofstream { file, std::ios::trunc } << result;
 
-        if (verbose) { std::println("[Runtime/info]: done!"); }
+        if (verbose) { std::println(PREFIX_INFO": done!"); }
     }
 
     return {};
