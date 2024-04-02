@@ -1,0 +1,27 @@
+very nice
+
+%IF [NOT [<ENV:NAME> EQUALS <"ENV:NAME">]]:
+    %PRINT [<"Hello, <ENV:NAME>!">]
+%END
+
+do not delete this!
+
+%SWITCH [<ENV:NUMBER>]:
+    %CASE [<0>]:
+        %IF [NOT [<ENV:NAME> EQUALS <"ENV:NAME">]]:
+            %PRINT [<So you like zeroes <ENV:NAME>?>]
+        %END
+        << zero is cool
+    %END
+    %CASE [<1>]:
+        << one is cool
+    %END
+    %CASE [<2>]:
+        << two is cool
+    %END
+    %DEFAULT:
+        << i guess its hard to choose just one, right?
+    %END
+%END
+
+i was here
