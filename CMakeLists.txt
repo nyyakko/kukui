@@ -15,8 +15,8 @@ option(ENABLE_CPPCHECK "" TRUE)
 set(kukui_CompilerOptions ${kukui_CompilerOptions} -Wno-gnu-statement-expression-from-macro-expansion)
 # set(kukui_LinkerOptions ${kukui_LinkerOptions})
 
-CPMAddPackage("gh:nyyakko/LibError#4f44ec6")
-CPMAddPackage("gh:nyyakko/LibPreprocessor#314bbfc")
+CPMAddPackage("gh:nyyakko/LibError#3ca5400")
+CPMAddPackage("gh:nyyakko/LibPreprocessor#1c4be3b")
 CPMAddPackage("gh:jarro2783/cxxopts@3.0.0")
 
 set(kukui_ExternalLibraries cxxopts LibError::LibError LibPreprocessor::LibPreprocessor)
